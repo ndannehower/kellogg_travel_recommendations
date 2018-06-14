@@ -23,7 +23,7 @@
       <% @recommendations.each do |recommendation| %>
       <tr>
         <td><%= recommendation.recommendation %></td>
-        <td><%= recommendation.category_id %></td>
+        <td><%= recommendation.category.category %></td>
         <td><%= recommendation.country_id %></td>
         <td><%= recommendation.city_id %></td>
         <td><%= recommendation.address %></td>
