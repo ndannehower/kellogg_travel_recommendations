@@ -32,13 +32,37 @@
       <% @recommendations.each do |recommendation| %>
       <tr>
         <td><%= recommendation.recommendation %></td>
-        <td><%= recommendation.category.category %></td>
-        <td><%= recommendation.country.country %></td>
-        <td><%= recommendation.city.city %></td>
+        <td>
+          <% if recommendation.category.present? %>
+            <a href="/categories/<%= recommendation.category.id %>">
+              <%= recommendation.category.category %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if recommendation.country.present? %>
+            <a href="/countries/<%= recommendation.country.id %>">
+              <%= recommendation.country.country %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if recommendation.city.present? %>
+            <a href="/cities/<%= recommendation.city.id %>">
+              <%= recommendation.city.city %>
+            </a>
+          <% end %>
+        </td>
         <td><%= recommendation.address %></td>
         <td><%= recommendation.good_for %></td>
         <td><img src='<%= recommendation.photo %>' class='img-responsive'></td>
-        <td><%= recommendation.user.created_at %></td>
+        <td>
+          <% if recommendation.user.present? %>
+            <a href="/users/<%= recommendation.user.id %>">
+              <%= recommendation.user.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/recommendations/<%= recommendation.id %>" class="btn btn-primary">Show</a>
           <a href="/recommendations/<%= recommendation.id %>/edit" class="btn btn-warning">Edit</a>

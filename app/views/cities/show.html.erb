@@ -9,7 +9,13 @@
       <dd><%= @city.city %></dd>
 
       <dt>Country</dt>
-      <dd><%= @city.country_id %></dd>
+      <dd>
+        <% if @city.country.present? %>
+          <a href="/countries/<%= @city.country_id %>">
+            <%= @city.country.country %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
