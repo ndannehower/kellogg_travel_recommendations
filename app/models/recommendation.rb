@@ -23,6 +23,20 @@ class Recommendation < ApplicationRecord
 
   # Direct associations
 
+  belongs_to :rating,
+             :required => false,
+             :counter_cache => true
+
+  belongs_to :trip,
+             :required => false,
+             :counter_cache => true
+
+  belongs_to :year,
+             :counter_cache => true
+
+  belongs_to :month,
+             :counter_cache => true
+
   belongs_to :user,
              :counter_cache => true
 

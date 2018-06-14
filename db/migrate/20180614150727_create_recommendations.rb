@@ -6,7 +6,12 @@ class CreateRecommendations < ActiveRecord::Migration
       t.integer :country_id
       t.integer :city_id
       t.string :address
-      t.string :good_for
+      t.integer :month_id
+      t.integer :year_id
+      t.integer :trip_id
+      t.string :visited_with
+      t.integer :rating_id
+      t.string :notes
       t.string :photo
       t.integer :user_id
 
