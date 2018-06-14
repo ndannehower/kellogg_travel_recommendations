@@ -42,7 +42,7 @@
           Country
         </label>
 
-        <input type="text" id="country_id" name="country_id" placeholder="Country" class="form-control" value="<%= @recommendation.country_id %>">
+        <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :country, @recommendation.country_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for city_id -->
