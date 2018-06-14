@@ -23,3 +23,65 @@
     </div>
   </div>
 </div>
+
+<!-- A Country has many recommendations -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Recommendations
+      </li>
+
+      <% @country.recommendations.each do |recommendation| %>
+        <li class="list-group-item">
+          <a href="/recommendations/<%= recommendation.id %>">
+            <%= recommendation.recommendation %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/recommendations/<%= recommendation.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/recommendations/<%= recommendation.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_recommendation/<%= recommendation.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Country has many cities -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Cities
+      </li>
+
+      <% @country.cities.each do |city| %>
+        <li class="list-group-item">
+          <a href="/cities/<%= city.id %>">
+            <%= city.city %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/cities/<%= city.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/cities/<%= city.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_city/<%= city.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
