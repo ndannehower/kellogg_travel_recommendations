@@ -28,7 +28,7 @@
         <td><%= recommendation.city.city %></td>
         <td><%= recommendation.address %></td>
         <td><%= recommendation.good_for %></td>
-        <td><%= recommendation.photo %></td>
+        <td><img src='<%= recommendation.photo %>' class='img-responsive'></td>
         <td><%= recommendation.user.created_at %></td>
         <td>
           <a href="/recommendations/<%= recommendation.id %>" class="btn btn-primary">Show</a>
