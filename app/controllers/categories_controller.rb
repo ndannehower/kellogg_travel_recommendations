@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @recommendation = Recommendation.new
     @category = Category.find(params[:id])
 
     render("categories/show.html.erb")

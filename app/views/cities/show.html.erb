@@ -54,6 +54,77 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_recommendation" method="post" enctype="multipart/form-data">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for recommendation -->
+      <div class="form-group">
+        <label for="recommendation" class="control-label">
+          Recommendation
+        </label>
+
+        <input type="text" id="recommendation" name="recommendation" placeholder="Recommendation" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for category_id -->
+      <div class="form-group">
+        <label for="category_id" class="control-label">
+          Category
+        </label>
+
+        <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :category), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for country_id -->
+      <div class="form-group">
+        <label for="country_id" class="control-label">
+          Country
+        </label>
+
+        <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :country), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for city_id -->
+      <input type="hidden" name="city_id" value="<%= @city.id %>">
+
+      <!-- Label and input for address -->
+      <div class="form-group">
+        <label for="address" class="control-label">
+          Address
+        </label>
+
+        <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for good_for -->
+      <div class="form-group">
+        <label for="good_for" class="control-label">
+          Good for
+        </label>
+
+        <input type="text" id="good_for" name="good_for" placeholder="Good for" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for photo -->
+      <div class="form-group">
+        <label for="photo" class="control-label">
+          Photo
+        </label>
+
+        <input type="file" id="photo" name="photo" class="form-control">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Recommendation
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
