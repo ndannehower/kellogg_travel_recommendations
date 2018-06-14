@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @country.errors.any? %>
+  <% @country.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Country</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_country" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for country -->
+      <div class="form-group">
+        <label for="country" class="control-label">
+          Country
+        </label>
+
+        <input type="text" id="country" name="country" placeholder="Country" class="form-control" value="<%= @country.country %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Country
+      </button>
+      or
+      <a href="/countries">Cancel</a>
+    </form>
+  </div>
+</div>
