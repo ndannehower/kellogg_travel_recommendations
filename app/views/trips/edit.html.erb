@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @trip.errors.any? %>
+  <% @trip.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Trip #<%= @trip.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_trip/<%= @trip.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for trip -->
+      <div class="form-group">
+        <label for="trip" class="control-label">
+          Trip
+        </label>
+
+        <input type="text" id="trip" name="trip" placeholder="Trip" class="form-control" value="<%= @trip.trip %>">
+      </div>
+
+      <!-- Label and input for year_id -->
+      <div class="form-group">
+        <label for="year_id" class="control-label">
+          Year
+        </label>
+
+        <%= select_tag(:year_id, options_from_collection_for_select(Year.all, :id, :year, @trip.year_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Trip
+      </button>
+      or
+      <a href="/trips/<%= @trip.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

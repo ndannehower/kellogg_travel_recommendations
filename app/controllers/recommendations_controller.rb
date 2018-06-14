@@ -1,7 +1,17 @@
 class RecommendationsController < ApplicationController
+  before_action :current_user_must_be_recommendation_user, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_recommendation_user
+    recommendation = Recommendation.find(params[:id])
+
+    unless current_user == recommendation.user
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @q = Recommendation.ransack(params[:q])
-    @recommendations = @q.result(:distinct => true).includes(:country, :city, :category, :user).page(params[:page]).per(10)
+    @recommendations = @q.result(:distinct => true).includes(:country, :city, :category, :user, :month, :year, :trip, :rating).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@recommendations.where.not(:address_latitude => nil)) do |recommendation, marker|
       marker.lat recommendation.address_latitude
       marker.lng recommendation.address_longitude
@@ -31,7 +41,12 @@ class RecommendationsController < ApplicationController
     @recommendation.country_id = params[:country_id]
     @recommendation.city_id = params[:city_id]
     @recommendation.address = params[:address]
-    @recommendation.good_for = params[:good_for]
+    @recommendation.month_id = params[:month_id]
+    @recommendation.year_id = params[:year_id]
+    @recommendation.trip_id = params[:trip_id]
+    @recommendation.visited_with = params[:visited_with]
+    @recommendation.rating_id = params[:rating_id]
+    @recommendation.notes = params[:notes]
     @recommendation.photo = params[:photo]
     @recommendation.user_id = params[:user_id]
 
@@ -65,7 +80,12 @@ class RecommendationsController < ApplicationController
     @recommendation.country_id = params[:country_id]
     @recommendation.city_id = params[:city_id]
     @recommendation.address = params[:address]
-    @recommendation.good_for = params[:good_for]
+    @recommendation.month_id = params[:month_id]
+    @recommendation.year_id = params[:year_id]
+    @recommendation.trip_id = params[:trip_id]
+    @recommendation.visited_with = params[:visited_with]
+    @recommendation.rating_id = params[:rating_id]
+    @recommendation.notes = params[:notes]
     @recommendation.photo = params[:photo]
     @recommendation.user_id = params[:user_id]
 

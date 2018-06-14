@@ -1,6 +1,6 @@
-ActiveAdmin.register Recommendation do
+ActiveAdmin.register Rating do
 
- permit_params :recommendation, :category_id, :country_id, :city_id, :address, :month_id, :year_id, :trip_id, :visited_with, :rating_id, :notes, :photo, :user_id
+ permit_params :rating
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
