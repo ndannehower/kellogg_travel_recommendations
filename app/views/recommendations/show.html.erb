@@ -42,8 +42,47 @@
         </div>
       </dd>
 
-      <dt>Good for</dt>
-      <dd><%= @recommendation.good_for %></dd>
+      <dt>Month</dt>
+      <dd>
+        <% if @recommendation.month.present? %>
+          <a href="/months/<%= @recommendation.month_id %>">
+            <%= @recommendation.month.month %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Year</dt>
+      <dd>
+        <% if @recommendation.year.present? %>
+          <a href="/years/<%= @recommendation.year_id %>">
+            <%= @recommendation.year.year %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Trip</dt>
+      <dd>
+        <% if @recommendation.trip.present? %>
+          <a href="/trips/<%= @recommendation.trip_id %>">
+            <%= @recommendation.trip.trip %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Visited with</dt>
+      <dd><%= @recommendation.visited_with %></dd>
+
+      <dt>Rating</dt>
+      <dd>
+        <% if @recommendation.rating.present? %>
+          <a href="/ratings/<%= @recommendation.rating_id %>">
+            <%= @recommendation.rating.rating %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Notes</dt>
+      <dd><%= @recommendation.notes %></dd>
 
       <dt>Photo</dt>
       <dd><img src="<%= @recommendation.photo %>" class="img-responsive"></dd>
@@ -63,12 +102,14 @@
       <a href="/recommendations" class="btn btn-primary">
         Back
       </a>
-      <a href="/recommendations/<%= @recommendation.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_recommendation/<%= @recommendation.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <% if current_user == @recommendation.user %>
+        <a href="/recommendations/<%= @recommendation.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+        <a href="/delete_recommendation/<%= @recommendation.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+      <% end %>
     </div>
   </div>
 </div>

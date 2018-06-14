@@ -96,13 +96,58 @@
         <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="">
       </div>
 
-      <!-- Label and input for good_for -->
+      <!-- Label and input for month_id -->
       <div class="form-group">
-        <label for="good_for" class="control-label">
-          Good for
+        <label for="month_id" class="control-label">
+          Month
         </label>
 
-        <input type="text" id="good_for" name="good_for" placeholder="Good for" class="form-control" value="">
+        <%= select_tag(:month_id, options_from_collection_for_select(Month.all, :id, :month), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for year_id -->
+      <div class="form-group">
+        <label for="year_id" class="control-label">
+          Year
+        </label>
+
+        <%= select_tag(:year_id, options_from_collection_for_select(Year.all, :id, :year), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for trip_id -->
+      <div class="form-group">
+        <label for="trip_id" class="control-label">
+          Trip
+        </label>
+
+        <%= select_tag(:trip_id, options_from_collection_for_select(Trip.all, :id, :trip), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for visited_with -->
+      <div class="form-group">
+        <label for="visited_with" class="control-label">
+          Visited with
+        </label>
+
+        <input type="text" id="visited_with" name="visited_with" placeholder="Visited with" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for rating_id -->
+      <div class="form-group">
+        <label for="rating_id" class="control-label">
+          Rating
+        </label>
+
+        <%= select_tag(:rating_id, options_from_collection_for_select(Rating.all, :id, :rating), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="control-label">
+          Notes
+        </label>
+
+        <input type="text" id="notes" name="notes" placeholder="Notes" class="form-control" value="">
       </div>
 
       <!-- Label and input for photo -->
