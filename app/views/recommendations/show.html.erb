@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3>Recommendation #<%= @recommendation.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Recommendation</dt>
+      <dd><%= @recommendation.recommendation %></dd>
+
+      <dt>Category</dt>
+      <dd><%= @recommendation.category_id %></dd>
+
+      <dt>Country</dt>
+      <dd><%= @recommendation.country_id %></dd>
+
+      <dt>City</dt>
+      <dd><%= @recommendation.city_id %></dd>
+
+      <dt>Address</dt>
+      <dd><%= @recommendation.address %></dd>
+
+      <dt>Good for</dt>
+      <dd><%= @recommendation.good_for %></dd>
+
+      <dt>Photo</dt>
+      <dd><%= @recommendation.photo %></dd>
+
+      <dt>User</dt>
+      <dd><%= @recommendation.user_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/recommendations" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/recommendations/<%= @recommendation.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_recommendation/<%= @recommendation.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<!-- Validation failure messages -->
+<% if @recommendation.errors.any? %>
+  <% @recommendation.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Recommendation</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_recommendation" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for recommendation -->
+      <div class="form-group">
+        <label for="recommendation" class="control-label">
+          Recommendation
+        </label>
+
+        <input type="text" id="recommendation" name="recommendation" placeholder="Recommendation" class="form-control" value="<%= @recommendation.recommendation %>">
+      </div>
+
+      <!-- Label and input for category_id -->
+      <div class="form-group">
+        <label for="category_id" class="control-label">
+          Category
+        </label>
+
+        <input type="text" id="category_id" name="category_id" placeholder="Category" class="form-control" value="<%= @recommendation.category_id %>">
+      </div>
+
+      <!-- Label and input for country_id -->
+      <div class="form-group">
+        <label for="country_id" class="control-label">
+          Country
+        </label>
+
+        <input type="text" id="country_id" name="country_id" placeholder="Country" class="form-control" value="<%= @recommendation.country_id %>">
+      </div>
+
+      <!-- Label and input for city_id -->
+      <div class="form-group">
+        <label for="city_id" class="control-label">
+          City
+        </label>
+
+        <input type="text" id="city_id" name="city_id" placeholder="City" class="form-control" value="<%= @recommendation.city_id %>">
+      </div>
+
+      <!-- Label and input for address -->
+      <div class="form-group">
+        <label for="address" class="control-label">
+          Address
+        </label>
+
+        <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @recommendation.address %>">
+      </div>
+
+      <!-- Label and input for good_for -->
+      <div class="form-group">
+        <label for="good_for" class="control-label">
+          Good for
+        </label>
+
+        <input type="text" id="good_for" name="good_for" placeholder="Good for" class="form-control" value="<%= @recommendation.good_for %>">
+      </div>
+
+      <!-- Label and input for photo -->
+      <div class="form-group">
+        <label for="photo" class="control-label">
+          Photo
+        </label>
+
+        <input type="text" id="photo" name="photo" placeholder="Photo" class="form-control" value="<%= @recommendation.photo %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @recommendation.user_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Recommendation
+      </button>
+      or
+      <a href="/recommendations">Cancel</a>
+    </form>
+  </div>
+</div>
