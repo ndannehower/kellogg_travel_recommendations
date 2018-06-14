@@ -14,8 +14,13 @@
   </div>
 
 <div class="form-group">
-    <%= f.label :good_for_cont, "Good for contains" %>
-    <%= f.text_field :good_for_cont, :class => "form-control", :placeholder => "Good for contains" %>
+    <%= f.label :notes_cont, "Notes contains" %>
+    <%= f.text_field :notes_cont, :class => "form-control", :placeholder => "Notes contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :visited_with_cont, "Visited with contains" %>
+    <%= f.text_field :visited_with_cont, :class => "form-control", :placeholder => "Visited with contains" %>
   </div>
 
 <div class="form-group">
@@ -113,6 +118,26 @@
           });
       </script>
 
+<div class="form-group">
+      <%= f.label :month_month_cont, "Month month contains" %>
+      <%= f.text_field :month_month_cont, :class => "form-control", :placeholder => "Month month contains" %>
+    </div>
+
+<div class="form-group">
+      <%= f.label :year_year_cont, "Year year contains" %>
+      <%= f.text_field :year_year_cont, :class => "form-control", :placeholder => "Year year contains" %>
+    </div>
+
+<div class="form-group">
+      <%= f.label :trip_trip_cont, "Trip trip contains" %>
+      <%= f.text_field :trip_trip_cont, :class => "form-control", :placeholder => "Trip trip contains" %>
+    </div>
+
+<div class="form-group">
+      <%= f.label :rating_rating_cont, "Rating rating contains" %>
+      <%= f.text_field :rating_rating_cont, :class => "form-control", :placeholder => "Rating rating contains" %>
+    </div>
+
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
       <a href="/recommendations" class="btn btn-default btn-block mb-1">Clear filters</a>
@@ -141,7 +166,12 @@
         <th>Country</th>
         <th>City</th>
         <th>Address</th>
-        <th>Good for</th>
+        <th>Month</th>
+        <th>Year</th>
+        <th>Trip</th>
+        <th>Visited with</th>
+        <th>Rating</th>
+        <th>Notes</th>
         <th>Photo</th>
         <th>User</th>
         <th>Actions</th>
@@ -172,7 +202,36 @@
           <% end %>
         </td>
         <td><%= recommendation.address %></td>
-        <td><%= recommendation.good_for %></td>
+        <td>
+          <% if recommendation.month.present? %>
+            <a href="/months/<%= recommendation.month.id %>">
+              <%= recommendation.month.month %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if recommendation.year.present? %>
+            <a href="/years/<%= recommendation.year.id %>">
+              <%= recommendation.year.year %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if recommendation.trip.present? %>
+            <a href="/trips/<%= recommendation.trip.id %>">
+              <%= recommendation.trip.trip %>
+            </a>
+          <% end %>
+        </td>
+        <td><%= recommendation.visited_with %></td>
+        <td>
+          <% if recommendation.rating.present? %>
+            <a href="/ratings/<%= recommendation.rating.id %>">
+              <%= recommendation.rating.rating %>
+            </a>
+          <% end %>
+        </td>
+        <td><%= recommendation.notes %></td>
         <td><img src='<%= recommendation.photo %>' class='img-responsive'></td>
         <td>
           <% if recommendation.user.present? %>
@@ -183,8 +242,11 @@
         </td>
         <td>
           <a href="/recommendations/<%= recommendation.id %>" class="btn btn-primary">Show</a>
-          <a href="/recommendations/<%= recommendation.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_recommendation/<%= recommendation.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          
+          <% if current_user == recommendation.user %>
+            <a href="/recommendations/<%= recommendation.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_recommendation/<%= recommendation.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>

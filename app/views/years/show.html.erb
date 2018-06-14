@@ -1,30 +1,30 @@
 <div class="page-header">
-  <h3>Country #<%= @country.id %></h3>
+  <h3>Year #<%= @year.id %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Country</dt>
-      <dd><%= @country.country %></dd>
+      <dt>Year</dt>
+      <dd><%= @year.year %></dd>
 
     </dl>
 
     <div class="btn-group btn-group-justified">
-      <a href="/countries" class="btn btn-primary">
+      <a href="/years" class="btn btn-primary">
         Back
       </a>
-      <a href="/countries/<%= @country.id %>/edit" class="btn btn-warning">
+      <a href="/years/<%= @year.id %>/edit" class="btn btn-warning">
         Edit
       </a>
-      <a href="/delete_country/<%= @country.id %>" class="btn btn-danger" rel="nofollow">
+      <a href="/delete_year/<%= @year.id %>" class="btn btn-danger" rel="nofollow">
         Delete
       </a>
     </div>
   </div>
 </div>
 
-<!-- A Country has many recommendations -->
+<!-- A Year has many recommendations -->
 
 <div class="row">
   <div class="col-md-12">
@@ -33,7 +33,7 @@
         Recommendations
       </li>
 
-      <% @country.recommendations.each do |recommendation| %>
+      <% @year.recommendations.each do |recommendation| %>
         <li class="list-group-item">
           <a href="/recommendations/<%= recommendation.id %>">
             <%= recommendation.recommendation %>
@@ -76,7 +76,13 @@
       </div>
 
       <!-- Label and input for country_id -->
-      <input type="hidden" name="country_id" value="<%= @country.id %>">
+      <div class="form-group">
+        <label for="country_id" class="control-label">
+          Country
+        </label>
+
+        <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :country), :class => "form-control") %>
+      </div>
 
       <!-- Label and input for city_id -->
       <div class="form-group">
@@ -106,13 +112,7 @@
       </div>
 
       <!-- Label and input for year_id -->
-      <div class="form-group">
-        <label for="year_id" class="control-label">
-          Year
-        </label>
-
-        <%= select_tag(:year_id, options_from_collection_for_select(Year.all, :id, :year), :class => "form-control") %>
-      </div>
+      <input type="hidden" name="year_id" value="<%= @year.id %>">
 
       <!-- Label and input for trip_id -->
       <div class="form-group">
@@ -171,28 +171,28 @@
   </div>
 </div>
 
-<!-- A Country has many cities -->
+<!-- A Year has many trips -->
 
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Cities
+        Trips
       </li>
 
-      <% @country.cities.each do |city| %>
+      <% @year.trips.each do |trip| %>
         <li class="list-group-item">
-          <a href="/cities/<%= city.id %>">
-            <%= city.city %>
+          <a href="/trips/<%= trip.id %>">
+            <%= trip.trip %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/cities/<%= city.id %>" class="btn btn-primary">
+            <a href="/trips/<%= trip.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/cities/<%= city.id %>/edit" class="btn btn-warning">
+            <a href="/trips/<%= trip.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_city/<%= city.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_trip/<%= trip.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>
@@ -200,24 +200,24 @@
       <% end %>
 
       <li class="list-group-item">
-        <form action="/create_city" method="post">
+        <form action="/create_trip" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for city -->
+      <!-- Label and input for trip -->
       <div class="form-group">
-        <label for="city" class="control-label">
-          City
+        <label for="trip" class="control-label">
+          Trip
         </label>
 
-        <input type="text" id="city" name="city" placeholder="City" class="form-control" value="">
+        <input type="text" id="trip" name="trip" placeholder="Trip" class="form-control" value="">
       </div>
 
-      <!-- Label and input for country_id -->
-      <input type="hidden" name="country_id" value="<%= @country.id %>">
+      <!-- Label and input for year_id -->
+      <input type="hidden" name="year_id" value="<%= @year.id %>">
 
       <button class="btn btn-block btn-success">
-        Create City
+        Create Trip
       </button>
     </form>
       </li>
