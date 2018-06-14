@@ -1,6 +1,11 @@
 class RecommendationsController < ApplicationController
   def index
     @recommendations = Recommendation.all
+    @location_hash = Gmaps4rails.build_markers(@recommendations.where.not(:address_latitude => nil)) do |recommendation, marker|
+      marker.lat recommendation.address_latitude
+      marker.lng recommendation.address_longitude
+      marker.infowindow "<h5><a href='/recommendations/#{recommendation.id}'>#{recommendation.recommendation}</a></h5><small>#{recommendation.address_formatted_address}</small>"
+    end
 
     render("recommendations/index.html.erb")
   end
